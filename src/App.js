@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <h1>Hi, I'm a React App</h1>
       <Person name="Takuya" age="30" />
-      <Person name="Fumiko" age="29" />
+      <Person name="Fumiko" age="29">My Hobbies: Racing</Person>
     </div>
   );
 }
