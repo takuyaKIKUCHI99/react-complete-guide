@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import UserInput from './User/UserInput';
+import UserOutput from './User/UserOutput';
 
 class App extends Component {
   state = {
     persons: [
       { name: 'Takuya', age: '30' },
       { name: 'Fumiko', age: '29' }
-    ]
+    ],
+    users: [{ userName: 'User 1' }, { userName: 'User 2' }]
   };
 
   switchNameHandler = (nickName) => {
@@ -25,6 +28,13 @@ class App extends Component {
         { name: 'Takuya', age: '30' },
         { name: event.target.value, age: '29' }
       ]
+    });
+  };
+
+  userNameChangeHandler = (event) => {
+    this.setState({
+      ...this.state,
+      users: [{ userName: event.target.value }, { userName: 'User 2' }]
     });
   };
 
@@ -54,6 +64,16 @@ class App extends Component {
         <button onClick={() => this.switchNameHandler('TK')} style={style}>
           Switch Name
         </button>
+
+        <div className='separation' />
+
+        <h2>Assignment 1</h2>
+        <UserInput
+          userName={this.state.users[0].userName}
+          change={this.userNameChangeHandler}
+        />
+        <UserOutput userName={this.state.users[0].userName} />
+        <UserOutput userName={this.state.users[1].userName} />
       </div>
     );
   }
