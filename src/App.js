@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import UserInput from './User/UserInput';
-import UserOutput from './User/UserOutput';
+// Assignment 1
+import UserInput from './Assignments/UserInput';
+import UserOutput from './Assignments/UserOutput';
+// Assignment 2
+import Validation from './Assignments/Validation';
+import Char from './Assignments/Char';
 
 class App extends Component {
   state = {
@@ -11,16 +15,19 @@ class App extends Component {
       { id: '5678', name: 'Fumiko', age: '29' }
     ],
     users: [{ userName: 'User 1' }, { userName: 'User 2' }],
-    isPersonsDisplayed: true
+    isPersonsDisplayed: true,
+    assignmentTwoInput: ''
   };
 
   changeNameHandler = (event, personId) => {
-    const person = this.state.persons.find(person => person.id === personId);
+    const person = this.state.persons.find((person) => person.id === personId);
     if (!person) return;
     person.name = event.target.value;
 
     const persons = [...this.state.persons];
-    const personIndex = this.state.persons.findIndex(person => person.id === personId);
+    const personIndex = this.state.persons.findIndex(
+      (person) => person.id === personId
+    );
     persons[personIndex] = person;
 
     this.setState({ persons: persons });
@@ -41,6 +48,19 @@ class App extends Component {
     this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
   };
 
+  assignmentTwoChangeHandler = (event) => {
+    if (!event || !event.target) return;
+    this.setState({ assignmentTwoInput: event.target.value });
+  };
+
+  deleteCharCard = (index) => {
+    const chars = this.state.assignmentTwoInput.split('');
+    chars.splice(index, 1);
+    const newInput = chars.join('');
+
+    this.setState({ assignmentTwoInput: newInput })
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -50,33 +70,24 @@ class App extends Component {
       cursor: 'pointer'
     };
 
-    const persons = this.state.isPersonsDisplayed ?
-      (
-        <div>
-          { this.state.persons.map((person, index) => {
-            return (
-              <Person
-                key={person.id}
-                name={person.name}
-                age={person.age}
-                click={() => this.deletePerson(index)}
-                change={(event) => this.changeNameHandler(event, person.id)}
-              />
-            );
-          })}
-        </div>
-      ) : null;
+    const persons = this.state.isPersonsDisplayed ? (
+      <div>
+        {this.state.persons.map((person, index) => {
+          return (
+            <Person
+              key={person.id}
+              name={person.name}
+              age={person.age}
+              click={() => this.deletePerson(index)}
+              change={(event) => this.changeNameHandler(event, person.id)}
+            />
+          );
+        })}
+      </div>
+    ) : null;
 
-    return (
-      <div className='App'>
-        <h1>Hi, I'm a React App</h1>
-        { persons }
-        <button onClick={this.toggleDisplayPersons} style={style}>
-          Hide cards
-        </button>
-
-        <div className='separation' />
-
+    const assignmentOne = (
+      <div>
         <h2>Assignment 1</h2>
         <UserInput
           userName={this.state.users[0].userName}
@@ -84,6 +95,45 @@ class App extends Component {
         />
         <UserOutput userName={this.state.users[0].userName} />
         <UserOutput userName={this.state.users[1].userName} />
+      </div>
+    );
+
+    const assignmentTwo = (
+      <div>
+        <h2>Assignment 2</h2>
+        <input
+          type='text'
+          value={this.state.assignmentTwoInput}
+          onChange={this.assignmentTwoChangeHandler}
+        />
+        <p>Length: {this.state.assignmentTwoInput.length}</p>
+        <Validation length={this.state.assignmentTwoInput.length} />
+        {this.state.assignmentTwoInput.split('').map((char, index) => {
+          return (
+            <Char
+              key={index}
+              char={char}
+              delete={() => this.deleteCharCard(index)}
+            />
+          );
+        })}
+      </div>
+    );
+
+    return (
+      <div className='App'>
+        <h1>Hi, I'm a React App</h1>
+        {persons}
+        <button onClick={this.toggleDisplayPersons} style={style}>
+          Hide cards
+        </button>
+
+        <div className='separation' />
+
+        {assignmentOne}
+
+        <div className='separation' />
+        {assignmentTwo}
       </div>
     );
   }
