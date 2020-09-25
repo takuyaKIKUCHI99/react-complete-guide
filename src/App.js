@@ -52,25 +52,27 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    const persons = this.state.isPersonsDisplayed ?
+      (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            click={() => this.switchNameHandler('Kiku')}
+            change={this.nameChangeHandler}>
+            My Hobbies: Racing
+          </Person>
+        </div>
+      ) : null;
+
     return (
       <div className='App'>
         <h1>Hi, I'm a React App</h1>
-        { this.state.isPersonsDisplayed ?
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              click={() => this.switchNameHandler('Kiku')}
-              change={this.nameChangeHandler}>
-              My Hobbies: Racing
-            </Person>
-          </div>
-          : null
-        }
+        { persons }
         <button onClick={this.toggleDisplayPersons} style={style}>
           Hide cards
         </button>
