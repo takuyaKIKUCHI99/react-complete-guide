@@ -10,7 +10,8 @@ class App extends Component {
       { name: 'Takuya', age: '30' },
       { name: 'Fumiko', age: '29' }
     ],
-    users: [{ userName: 'User 1' }, { userName: 'User 2' }]
+    users: [{ userName: 'User 1' }, { userName: 'User 2' }],
+    isPersonsDisplayed: true
   };
 
   switchNameHandler = (nickName) => {
@@ -38,6 +39,10 @@ class App extends Component {
     });
   };
 
+  toggleDisplayPersons = () => {
+    this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
+  };
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -50,19 +55,24 @@ class App extends Component {
     return (
       <div className='App'>
         <h1>Hi, I'm a React App</h1>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={() => this.switchNameHandler('Kiku')}
-          change={this.nameChangeHandler}>
-          My Hobbies: Racing
-        </Person>
-        <button onClick={() => this.switchNameHandler('TK')} style={style}>
-          Switch Name
+        { this.state.isPersonsDisplayed ?
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              click={() => this.switchNameHandler('Kiku')}
+              change={this.nameChangeHandler}>
+              My Hobbies: Racing
+            </Person>
+          </div>
+          : null
+        }
+        <button onClick={this.toggleDisplayPersons} style={style}>
+          Hide cards
         </button>
 
         <div className='separation' />

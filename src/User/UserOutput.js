@@ -9,7 +9,7 @@ const userOutput = (props) => {
   return (
     <div>
       <p style={style}>User name: {props.userName}</p>
-      <p class="red-font">2</p>
+      <p className="red-font">2</p>
     </div>
   )
 };
