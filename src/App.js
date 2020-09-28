@@ -58,8 +58,8 @@ class App extends Component {
     chars.splice(index, 1);
     const newInput = chars.join('');
 
-    this.setState({ assignmentTwoInput: newInput })
-  }
+    this.setState({ assignmentTwoInput: newInput });
+  };
 
   render() {
     const style = {
@@ -88,6 +88,10 @@ class App extends Component {
         })}
       </div>
     ) : null;
+
+    const pClasses = [];
+    if (this.state.persons.length <= 1) pClasses.push('bold');
+    if (this.state.persons.length === 0) pClasses.push('text-red');
 
     const assignmentOne = (
       <div>
@@ -126,6 +130,9 @@ class App extends Component {
     return (
       <div className='App'>
         <h1>Hi, I'm a React App</h1>
+        <p className={pClasses.length ? pClasses.join(' ') : ''}>
+          It is working!!
+        </p>
         {persons}
         <button onClick={this.toggleDisplayPersons} style={style}>
           Hide cards
