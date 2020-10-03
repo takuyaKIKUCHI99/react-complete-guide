@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // External
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 // CSS
 import './App.css';
@@ -14,20 +14,6 @@ import UserOutput from './Assignments/UserOutput';
 // Assignment 2
 import Validation from './Assignments/Validation';
 import Char from './Assignments/Char';
-
-const StyledButton = styled.button`
-  background-color: ${(props) => (props.alt ? 'green' : 'red')};
-  color: white;
-  font: inherit;
-  border: 1x solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) => (props.alt ? 'lightgreen' : 'salmon')};
-    color: black;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -144,11 +130,7 @@ class App extends Component {
           It is working!!
         </p>
         {persons}
-        <StyledButton
-          alt={this.state.isPersonsDisplayed}
-          onClick={this.toggleDisplayPersons}>
-          Hide cards
-        </StyledButton>
+        <button onClick={this.toggleDisplayPersons}>Hide cards</button>
 
         <div className='separation' />
 
