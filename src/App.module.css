@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.separation {
+.Separation {
   border: 1px solid #eee;
   width: 100%;
   margin: 16px 0;
@@ -16,7 +16,7 @@
   font-weight: bold;
 }
 
-button {
+Button {
   background-color: green;
   color: white;
   font: inherit;
@@ -25,7 +25,15 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+Button:hover {
   background-color: lightgreen;
   color: black;
+}
+
+Button.Red {
+  background-color: red;
+}
+
+Button.Red:hover {
+  background-color: salmon;
 }

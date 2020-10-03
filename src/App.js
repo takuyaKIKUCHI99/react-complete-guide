@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
-// External
-// import styled from 'styled-components';
-
 // CSS
-import './App.css';
+import classes from './App.module.css';
 
 // Components
 import Person from './Person/Person';
@@ -16,6 +13,7 @@ import Validation from './Assignments/Validation';
 import Char from './Assignments/Char';
 
 class App extends Component {
+  // State
   state = {
     persons: [
       { id: '1234', name: 'Takuya', age: '30' },
@@ -26,6 +24,9 @@ class App extends Component {
     assignmentTwoInput: ''
   };
 
+  buttonClasses = [classes.Button];
+
+  // Event handlers
   changeNameHandler = (event, personId) => {
     const person = this.state.persons.find((person) => person.id === personId);
     if (!person) return;
@@ -53,6 +54,7 @@ class App extends Component {
 
   toggleDisplayPersons = () => {
     this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
+    this.buttonClasses.push(classes.Red);
   };
 
   assignmentTwoChangeHandler = (event) => {
@@ -85,9 +87,7 @@ class App extends Component {
       </div>
     ) : null;
 
-    const pClasses = [];
-    if (this.state.persons.length <= 1) pClasses.push('bold');
-    if (this.state.persons.length === 0) pClasses.push('text-red');
+    const separation = <div className={classes.Separation} />;
 
     const assignmentOne = (
       <div>
@@ -124,19 +124,20 @@ class App extends Component {
     );
 
     return (
-      <div className='App'>
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={pClasses.length ? pClasses.join(' ') : ''}>
-          It is working!!
-        </p>
-        {persons}
-        <button onClick={this.toggleDisplayPersons}>Hide cards</button>
+        <p>It is working!!</p>
 
-        <div className='separation' />
+        {persons}
+
+        <button className={this.buttonClasses.join(' ')} onClick={this.toggleDisplayPersons}>Hide cards</button>
+
+        {separation}
 
         {assignmentOne}
 
-        <div className='separation' />
+        {separation}
+
         {assignmentTwo}
       </div>
     );
