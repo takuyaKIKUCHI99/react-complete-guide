@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+
+// External
+import Radium, { StyleRoot } from 'radium';
+
+// CSS
 import './App.css';
+
+// Components
 import Person from './Person/Person';
 // Assignment 1
 import UserInput from './Assignments/UserInput';
@@ -68,10 +75,18 @@ class App extends Component {
       font: 'inherit',
       border: '1x solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     style.backgroundColor = this.state.isPersonsDisplayed ? 'green' : 'red';
+    style[':hover'] = {
+      backgroundColor: 'lightgreen',
+      color: 'black'
+    };
 
     const persons = this.state.isPersonsDisplayed ? (
       <div>
@@ -128,25 +143,27 @@ class App extends Component {
     );
 
     return (
-      <div className='App'>
-        <h1>Hi, I'm a React App</h1>
-        <p className={pClasses.length ? pClasses.join(' ') : ''}>
-          It is working!!
-        </p>
-        {persons}
-        <button onClick={this.toggleDisplayPersons} style={style}>
-          Hide cards
-        </button>
+      <StyleRoot>
+        <div className='App'>
+          <h1>Hi, I'm a React App</h1>
+          <p className={pClasses.length ? pClasses.join(' ') : ''}>
+            It is working!!
+          </p>
+          {persons}
+          <button onClick={this.toggleDisplayPersons} style={style}>
+            Hide cards
+          </button>
 
-        <div className='separation' />
+          <div className='separation' />
 
-        {assignmentOne}
+          {assignmentOne}
 
-        <div className='separation' />
-        {assignmentTwo}
-      </div>
+          <div className='separation' />
+          {assignmentTwo}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
