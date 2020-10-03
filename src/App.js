@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // External
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 
 // CSS
 import './App.css';
@@ -14,6 +14,20 @@ import UserOutput from './Assignments/UserOutput';
 // Assignment 2
 import Validation from './Assignments/Validation';
 import Char from './Assignments/Char';
+
+const StyledButton = styled.button`
+  background-color: ${(props) => (props.alt ? 'green' : 'red')};
+  color: white;
+  font: inherit;
+  border: 1x solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => (props.alt ? 'lightgreen' : 'salmon')};
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -69,25 +83,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1x solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
-    style.backgroundColor = this.state.isPersonsDisplayed ? 'green' : 'red';
-    style[':hover'] = {
-      backgroundColor: 'lightgreen',
-      color: 'black'
-    };
-
     const persons = this.state.isPersonsDisplayed ? (
       <div>
         {this.state.persons.map((person, index) => {
@@ -143,27 +138,27 @@ class App extends Component {
     );
 
     return (
-      <StyleRoot>
-        <div className='App'>
-          <h1>Hi, I'm a React App</h1>
-          <p className={pClasses.length ? pClasses.join(' ') : ''}>
-            It is working!!
-          </p>
-          {persons}
-          <button onClick={this.toggleDisplayPersons} style={style}>
-            Hide cards
-          </button>
+      <div className='App'>
+        <h1>Hi, I'm a React App</h1>
+        <p className={pClasses.length ? pClasses.join(' ') : ''}>
+          It is working!!
+        </p>
+        {persons}
+        <StyledButton
+          alt={this.state.isPersonsDisplayed}
+          onClick={this.toggleDisplayPersons}>
+          Hide cards
+        </StyledButton>
 
-          <div className='separation' />
+        <div className='separation' />
 
-          {assignmentOne}
+        {assignmentOne}
 
-          <div className='separation' />
-          {assignmentTwo}
-        </div>
-      </StyleRoot>
+        <div className='separation' />
+        {assignmentTwo}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
