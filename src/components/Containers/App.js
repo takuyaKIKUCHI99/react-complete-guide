@@ -5,10 +5,11 @@ import classes from './App.module.css';
 
 // Components
 import Person from '../Persons/Person/Person';
-// Assignments
-import UserInput from '../Assignments/UserInput';
-import UserOutput from '../Assignments/UserOutput';
-// import AssignmentTwo from '../Assignments/AssignmentTwo';
+
+/* Assignments
+import AssignmentOne from '../Assignments/AssignmentOne';
+import AssignmentTwo from '../Assignments/AssignmentTwo';
+ */
 
 class App extends Component {
   // State
@@ -44,16 +45,18 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
+  toggleDisplayPersons = () => {
+    this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
+    this.buttonClasses.push(classes.Red);
+  };
+
+  /* ----- Assignment one ---------
   userNameChangeHandler = (event) => {
     this.setState({
       users: [{ userName: event.target.value }, { userName: 'User 2' }]
     });
   };
-
-  toggleDisplayPersons = () => {
-    this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
-    this.buttonClasses.push(classes.Red);
-  };
+  -------------------------------- */
 
   /* ----- Assignment two ---------
   assignmentTwoChangeHandler = (event) => {
@@ -87,20 +90,6 @@ class App extends Component {
       </div>
     ) : null;
 
-    const separation = <div className={classes.Separation} />;
-
-    const assignmentOne = (
-      <div>
-        <h2>Assignment 1</h2>
-        <UserInput
-          userName={this.state.users[0].userName}
-          change={this.userNameChangeHandler}
-        />
-        <UserOutput userName={this.state.users[0].userName} />
-        <UserOutput userName={this.state.users[1].userName} />
-      </div>
-    );
-
     return (
       <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
@@ -110,11 +99,10 @@ class App extends Component {
 
         <button className={this.buttonClasses.join(' ')} onClick={this.toggleDisplayPersons}>Hide cards</button>
 
-        {separation}
-
-        {assignmentOne}
-
-        {separation}
+        {/* <AssignmentOne
+          users={this.state.users}
+          change={this.userNameChangeHandler}
+        /> */}
 
         {/* <AssignmentTwo
           assignmentTwoInput={this.state.assignmentTwoInput}

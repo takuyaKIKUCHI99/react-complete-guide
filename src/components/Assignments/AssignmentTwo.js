@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Assignment 2
 import Validation from './Validation';
 import Char from './Char';
 
