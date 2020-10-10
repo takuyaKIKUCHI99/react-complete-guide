@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 // CSS
 import classes from './App.module.css';
 
-// Components
-import Person from '../Persons/Person/Person';
+import Persons from '../Persons/Persons';
 
 /* Assignments
 import AssignmentOne from '../Assignments/AssignmentOne';
@@ -19,13 +18,18 @@ class App extends Component {
       { id: '5678', name: 'Fumiko', age: '29' }
     ],
     users: [{ userName: 'User 1' }, { userName: 'User 2' }],
-    isPersonsDisplayed: true,
+    isPersonsDisplayed: true
     // assignmentTwoInput: ''
   };
 
   buttonClasses = [classes.Button];
 
   // Event handlers
+  toggleDisplayPersons = () => {
+    this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
+    this.buttonClasses.push(classes.Red);
+  };
+
   changeNameHandler = (event, personId) => {
     const person = this.state.persons.find((person) => person.id === personId);
     if (!person) return;
@@ -43,11 +47,6 @@ class App extends Component {
   deletePerson = (personIndex) => {
     const persons = [...this.state.persons].splice(personIndex, 1);
     this.setState({ persons: persons });
-  };
-
-  toggleDisplayPersons = () => {
-    this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
-    this.buttonClasses.push(classes.Red);
   };
 
   /* ----- Assignment one ---------
@@ -75,19 +74,11 @@ class App extends Component {
 
   render() {
     const persons = this.state.isPersonsDisplayed ? (
-      <div>
-        {this.state.persons.map((person, index) => {
-          return (
-            <Person
-              key={person.id}
-              name={person.name}
-              age={person.age}
-              click={() => this.deletePerson(index)}
-              change={(event) => this.changeNameHandler(event, person.id)}
-            />
-          );
-        })}
-      </div>
+      <Persons
+        persons={this.state.persons}
+        delete={this.deletePerson}
+        change={this.changeNameHandler}
+      />
     ) : null;
 
     return (
@@ -97,7 +88,11 @@ class App extends Component {
 
         {persons}
 
-        <button className={this.buttonClasses.join(' ')} onClick={this.toggleDisplayPersons}>Hide cards</button>
+        <button
+          className={this.buttonClasses.join(' ')}
+          onClick={this.toggleDisplayPersons}>
+          Hide cards
+        </button>
 
         {/* <AssignmentOne
           users={this.state.users}
