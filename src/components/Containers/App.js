@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import classes from './App.module.css';
 
 // Components
-import Person from './Person/Person';
+import Person from '../Persons/Person/Person';
 // Assignment 1
-import UserInput from './Assignments/UserInput';
-import UserOutput from './Assignments/UserOutput';
+import UserInput from '../Assignments/UserInput';
+import UserOutput from '../Assignments/UserOutput';
 // Assignment 2
-import Validation from './Assignments/Validation';
-import Char from './Assignments/Char';
+import Validation from '../Assignments/Validation';
+import Char from '../Assignments/Char';
 
 class App extends Component {
   // State
