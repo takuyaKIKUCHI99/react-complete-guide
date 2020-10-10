@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import classes from './App.module.css';
+import styles from './App.module.css';
 
 import Cockpit from '../Cockpit/Cockpit';
 import Persons from '../Persons/Persons';
@@ -77,9 +77,9 @@ class App extends Component {
     ) : null;
 
     return (
-      <div className={classes.App}>
+      <div className={styles.App}>
         <Cockpit
-          persons={this.state.persons}
+          isPersonsDisplayed={this.state.isPersonsDisplayed}
           toggle={this.toggleDisplayPersons}
         />
 

@@ -1,4 +1,4 @@
-Button {
+button {
   background-color: green;
   color: white;
   font: inherit;
@@ -7,15 +7,15 @@ Button {
   cursor: pointer;
 }
 
-Button:hover {
+button:hover {
   background-color: lightgreen;
   color: black;
 }
 
-Button.red {
+button.red {
   background-color: red;
 }
 
-Button.red:hover {
+button.red:hover {
   background-color: salmon;
 }
