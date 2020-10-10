@@ -1,0 +1,21 @@
+Button {
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1x solid blue;
+  padding: 8px;
+  cursor: pointer;
+}
+
+Button:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+Button.red {
+  background-color: red;
+}
+
+Button.red:hover {
+  background-color: salmon;
+}

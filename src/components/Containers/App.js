@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-// CSS
 import classes from './App.module.css';
 
+import Cockpit from '../Cockpit/Cockpit';
 import Persons from '../Persons/Persons';
 
 /* Assignments
@@ -11,23 +11,18 @@ import AssignmentTwo from '../Assignments/AssignmentTwo';
  */
 
 class App extends Component {
-  // State
   state = {
     persons: [
       { id: '1234', name: 'Takuya', age: '30' },
       { id: '5678', name: 'Fumiko', age: '29' }
     ],
-    users: [{ userName: 'User 1' }, { userName: 'User 2' }],
-    isPersonsDisplayed: true
+    isPersonsDisplayed: true,
+    // users: [{ userName: 'User 1' }, { userName: 'User 2' }],
     // assignmentTwoInput: ''
   };
 
-  buttonClasses = [classes.Button];
-
-  // Event handlers
   toggleDisplayPersons = () => {
     this.setState({ isPersonsDisplayed: !this.state.isPersonsDisplayed });
-    this.buttonClasses.push(classes.Red);
   };
 
   changeNameHandler = (event, personId) => {
@@ -83,16 +78,12 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p>It is working!!</p>
+        <Cockpit
+          persons={this.state.persons}
+          toggle={this.toggleDisplayPersons}
+        />
 
         {persons}
-
-        <button
-          className={this.buttonClasses.join(' ')}
-          onClick={this.toggleDisplayPersons}>
-          Hide cards
-        </button>
 
         {/* <AssignmentOne
           users={this.state.users}
