@@ -5,12 +5,10 @@ import classes from './App.module.css';
 
 // Components
 import Person from '../Persons/Person/Person';
-// Assignment 1
+// Assignments
 import UserInput from '../Assignments/UserInput';
 import UserOutput from '../Assignments/UserOutput';
-// Assignment 2
-import Validation from '../Assignments/Validation';
-import Char from '../Assignments/Char';
+// import AssignmentTwo from '../Assignments/AssignmentTwo';
 
 class App extends Component {
   // State
@@ -21,7 +19,7 @@ class App extends Component {
     ],
     users: [{ userName: 'User 1' }, { userName: 'User 2' }],
     isPersonsDisplayed: true,
-    assignmentTwoInput: ''
+    // assignmentTwoInput: ''
   };
 
   buttonClasses = [classes.Button];
@@ -57,6 +55,7 @@ class App extends Component {
     this.buttonClasses.push(classes.Red);
   };
 
+  /* ----- Assignment two ---------
   assignmentTwoChangeHandler = (event) => {
     if (!event || !event.target) return;
     this.setState({ assignmentTwoInput: event.target.value });
@@ -69,6 +68,7 @@ class App extends Component {
 
     this.setState({ assignmentTwoInput: newInput });
   };
+  -------------------------------- */
 
   render() {
     const persons = this.state.isPersonsDisplayed ? (
@@ -101,28 +101,6 @@ class App extends Component {
       </div>
     );
 
-    const assignmentTwo = (
-      <div>
-        <h2>Assignment 2</h2>
-        <input
-          type='text'
-          value={this.state.assignmentTwoInput}
-          onChange={this.assignmentTwoChangeHandler}
-        />
-        <p>Length: {this.state.assignmentTwoInput.length}</p>
-        <Validation length={this.state.assignmentTwoInput.length} />
-        {this.state.assignmentTwoInput.split('').map((char, index) => {
-          return (
-            <Char
-              key={index}
-              char={char}
-              delete={() => this.deleteCharCard(index)}
-            />
-          );
-        })}
-      </div>
-    );
-
     return (
       <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
@@ -138,7 +116,11 @@ class App extends Component {
 
         {separation}
 
-        {assignmentTwo}
+        {/* <AssignmentTwo
+          assignmentTwoInput={this.state.assignmentTwoInput}
+          change={this.assignmentTwoChangeHandler}
+          delete={this.deleteCharCard}
+        /> */}
       </div>
     );
   }
