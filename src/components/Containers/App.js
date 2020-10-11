@@ -5,7 +5,8 @@ import styles from './App.module.css';
 import Cockpit from '../Cockpit/Cockpit';
 import Persons from '../Persons/Persons';
 
-import WithClass from '../../hoc/WithClass';
+import Aux from '../../hoc/Aux';
+import withClass from '../../hoc/withClass';
 
 /* Assignments
 import AssignmentOne from '../Assignments/AssignmentOne';
@@ -79,7 +80,7 @@ class App extends Component {
     ) : null;
 
     return (
-      <WithClass classes={styles.App}>
+      <Aux>
         <Cockpit
           isPersonsDisplayed={this.state.isPersonsDisplayed}
           toggle={this.toggleDisplayPersons}
@@ -97,9 +98,9 @@ class App extends Component {
           change={this.assignmentTwoChangeHandler}
           delete={this.deleteCharCard}
         /> */}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, styles.App);
