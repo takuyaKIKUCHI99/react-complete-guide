@@ -16,8 +16,8 @@ import AssignmentTwo from '../Assignments/AssignmentTwo';
 class App extends Component {
   state = {
     persons: [
-      { id: '1234', name: 'Takuya', age: '30' },
-      { id: '5678', name: 'Fumiko', age: '29' }
+      { id: '1234', name: 'Takuya', age: 30 },
+      { id: '5678', name: 'Fumiko', age: 29 }
     ],
     isPersonsDisplayed: true,
     // users: [{ userName: 'User 1' }, { userName: 'User 2' }],

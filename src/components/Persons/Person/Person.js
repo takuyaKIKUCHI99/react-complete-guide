@@ -2,6 +2,8 @@ import classes from './Person.module.css';
 
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 const person = (props) => {
   return (
     <div className={classes.Person}>
@@ -12,6 +14,13 @@ const person = (props) => {
       <input value={props.name} onChange={props.change} />
     </div>
   );
+};
+
+person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
 };
 
 export default person;
