@@ -4,7 +4,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-const person = (props) => {
+const Person = (props) => {
   return (
     <div className={classes.Person}>
       <p onClick={props.click}>
@@ -16,11 +16,11 @@ const person = (props) => {
   );
 };
 
-person.propTypes = {
+Person.propTypes = {
   click: PropTypes.func,
   name: PropTypes.string,
   age: PropTypes.number,
   changed: PropTypes.func
 };
 
-export default person;
+export default Person;
